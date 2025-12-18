@@ -1,6 +1,6 @@
 // ABOUTME: PromotionID value type representing a promotion identifier.
 // ABOUTME: Wraps a string to provide type safety for promotion identifiers.
-package promotionengine
+package domain
 
 import (
 	"fmt"

@@ -1,6 +1,6 @@
 // ABOUTME: Product domain type representing a product in the catalog.
 // ABOUTME: Contains product identification, name, and categorization.
-package promotionengine
+package domain
 
 // Product represents a product in the catalog.
 type Product struct {

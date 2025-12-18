@@ -1,6 +1,6 @@
-// ABOUTME: Unit tests for the Sku value type.
+// ABOUTME: Unit tests for the PromotionID value type.
 // ABOUTME: Verifies validation and string representation.
-package promotionengine
+package domain
 
 import (
 	"testing"
@@ -9,44 +9,44 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestNewSku(t *testing.T) {
+func TestNewPromotionID(t *testing.T) {
 	tests := []struct {
 		name      string
 		value     string
 		expectErr bool
 	}{
-		{"valid sku", "APPLE", false},
-		{"valid with numbers", "PROD123", false},
+		{"valid promo id", "PROMO123", false},
+		{"valid with special chars", "WINTER-SALE-2025", false},
 		{"invalid empty", "", true},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			s, err := NewSku(tt.value)
+			p, err := NewPromotionID(tt.value)
 			if tt.expectErr {
 				assert.Error(t, err)
 			} else {
 				require.NoError(t, err)
-				assert.Equal(t, tt.value, s.Value)
+				assert.Equal(t, tt.value, p.Value)
 			}
 		})
 	}
 }
 
-func TestMustSku(t *testing.T) {
+func TestMustPromotionID(t *testing.T) {
 	t.Run("valid value", func(t *testing.T) {
-		s := MustSku("APPLE")
-		assert.Equal(t, "APPLE", s.Value)
+		p := MustPromotionID("PROMO123")
+		assert.Equal(t, "PROMO123", p.Value)
 	})
 
 	t.Run("invalid value panics", func(t *testing.T) {
 		assert.Panics(t, func() {
-			MustSku("")
+			MustPromotionID("")
 		})
 	})
 }
 
-func TestSkuString(t *testing.T) {
-	s := MustSku("APPLE")
-	assert.Equal(t, "APPLE", s.String())
+func TestPromotionIDString(t *testing.T) {
+	p := MustPromotionID("PROMO123")
+	assert.Equal(t, "PROMO123", p.String())
 }

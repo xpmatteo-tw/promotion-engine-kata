@@ -1,6 +1,6 @@
 // ABOUTME: Unit tests for the Cart domain type.
 // ABOUTME: Verifies cart creation, line item management, and subtotal calculation.
-package promotionengine
+package domain
 
 import (
 	"testing"

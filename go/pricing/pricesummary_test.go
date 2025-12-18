@@ -1,21 +1,22 @@
 // ABOUTME: Unit tests for the PriceSummary domain type.
 // ABOUTME: Verifies price summary creation and field assignment.
-package promotionengine
+package pricing
 
 import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"promotionengine/domain"
 )
 
 func TestNewPriceSummary(t *testing.T) {
-	subtotal := Euros(10.00)
-	discountTotal := Euros(2.00)
-	total := Euros(8.00)
+	subtotal := domain.Euros(10.00)
+	discountTotal := domain.Euros(2.00)
+	total := domain.Euros(8.00)
 
 	discount := NewAppliedDiscount(
-		MustPromotionID("PROMO10"),
-		Euros(2.00),
+		domain.MustPromotionID("PROMO10"),
+		domain.Euros(2.00),
 		"cart",
 		"10% off",
 	)
@@ -31,9 +32,9 @@ func TestNewPriceSummary(t *testing.T) {
 }
 
 func TestNewPriceSummaryNoDiscounts(t *testing.T) {
-	subtotal := Euros(10.00)
-	discountTotal := Euros(0.00)
-	total := Euros(10.00)
+	subtotal := domain.Euros(10.00)
+	discountTotal := domain.Euros(0.00)
+	total := domain.Euros(10.00)
 	appliedDiscounts := []AppliedDiscount{}
 
 	summary := NewPriceSummary(subtotal, discountTotal, total, appliedDiscounts)

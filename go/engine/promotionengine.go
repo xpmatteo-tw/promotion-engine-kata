@@ -1,26 +1,32 @@
 // ABOUTME: PromotionEngine applies promotions to carts and calculates final prices.
 // ABOUTME: Orchestrates promotion evaluation and discount application.
-package promotionengine
+package engine
+
+import (
+	"promotionengine/domain"
+	"promotionengine/pricing"
+	"promotionengine/promotions"
+)
 
 // PromotionEngine is responsible for pricing carts with promotions.
 type PromotionEngine struct {
-	promotions []Promotion
+	promotionsList []promotions.Promotion
 }
 
 // NewPromotionEngine creates a new PromotionEngine with the given promotions.
-func NewPromotionEngine(promotions []Promotion) *PromotionEngine {
+func NewPromotionEngine(promos []promotions.Promotion) *PromotionEngine {
 	return &PromotionEngine{
-		promotions: promotions,
+		promotionsList: promos,
 	}
 }
 
 // Price calculates the final price for a cart, applying all applicable promotions.
-func (e *PromotionEngine) Price(cart Cart, context PricingContext) PriceSummary {
+func (e *PromotionEngine) Price(cart domain.Cart, context pricing.PricingContext) pricing.PriceSummary {
 	subtotal := cart.Subtotal()
 
 	// Collect all applicable discounts
-	var appliedDiscounts []AppliedDiscount
-	for _, promo := range e.promotions {
+	var appliedDiscounts []pricing.AppliedDiscount
+	for _, promo := range e.promotionsList {
 		if promo.IsApplicable(cart, context) {
 			discounts := promo.Apply(cart, context)
 			appliedDiscounts = append(appliedDiscounts, discounts...)
@@ -28,7 +34,7 @@ func (e *PromotionEngine) Price(cart Cart, context PricingContext) PriceSummary 
 	}
 
 	// Calculate total discount
-	discountTotal := CentsAmount(0)
+	discountTotal := domain.CentsAmount(0)
 	for _, discount := range appliedDiscounts {
 		discountTotal = discountTotal.Add(discount.Amount)
 	}
@@ -36,7 +42,7 @@ func (e *PromotionEngine) Price(cart Cart, context PricingContext) PriceSummary 
 	// Calculate final total
 	total := subtotal.Subtract(discountTotal)
 
-	return PriceSummary{
+	return pricing.PriceSummary{
 		Subtotal:         subtotal,
 		DiscountTotal:    discountTotal,
 		Total:            total,

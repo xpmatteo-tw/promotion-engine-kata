@@ -1,6 +1,6 @@
 // ABOUTME: Unit tests for the Quantity value type.
 // ABOUTME: Verifies validation and arithmetic operations.
-package promotionengine
+package domain
 
 import (
 	"testing"

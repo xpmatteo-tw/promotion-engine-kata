@@ -1,6 +1,6 @@
 // ABOUTME: Sku value type representing a stock keeping unit identifier.
 // ABOUTME: Wraps a string to provide type safety for product identifiers.
-package promotionengine
+package domain
 
 import (
 	"fmt"

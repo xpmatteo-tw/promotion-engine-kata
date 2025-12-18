@@ -1,6 +1,6 @@
 // ABOUTME: Quantity value type representing a non-negative integer quantity.
 // ABOUTME: Provides validation to ensure quantities are not negative.
-package promotionengine
+package domain
 
 import (
 	"fmt"

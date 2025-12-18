@@ -1,6 +1,6 @@
 // ABOUTME: Percentage value type representing a percentage between 0 and 100.
 // ABOUTME: Provides validation to ensure percentages are within valid range.
-package promotionengine
+package domain
 
 import (
 	"fmt"

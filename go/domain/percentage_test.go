@@ -1,6 +1,6 @@
 // ABOUTME: Unit tests for the Percentage value type.
 // ABOUTME: Verifies validation and conversion to decimal.
-package promotionengine
+package domain
 
 import (
 	"testing"

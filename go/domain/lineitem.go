@@ -1,6 +1,6 @@
 // ABOUTME: LineItem domain type representing a product line in a cart.
 // ABOUTME: Contains product, quantity, and pricing information.
-package promotionengine
+package domain
 
 // LineItem represents a line item in a shopping cart.
 type LineItem struct {

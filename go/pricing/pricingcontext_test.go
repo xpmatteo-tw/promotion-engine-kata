@@ -1,6 +1,6 @@
 // ABOUTME: Unit tests for the PricingContext type.
 // ABOUTME: Verifies context creation and tag checking.
-package promotionengine
+package pricing
 
 import (
 	"testing"

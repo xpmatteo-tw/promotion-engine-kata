@@ -1,6 +1,6 @@
 // ABOUTME: Cart domain type representing a shopping cart with line items.
 // ABOUTME: Provides methods to calculate subtotals and manage items.
-package promotionengine
+package domain
 
 // Cart represents a shopping cart containing line items.
 type Cart struct {

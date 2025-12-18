@@ -1,10 +1,8 @@
 // ABOUTME: PricingContext type containing contextual information for pricing.
 // ABOUTME: Includes timestamp, channel, customer ID, and customer tags for promotion eligibility.
-package promotionengine
+package pricing
 
-import (
-	"time"
-)
+import "time"
 
 // PricingContext contains contextual information for pricing a cart.
 type PricingContext struct {

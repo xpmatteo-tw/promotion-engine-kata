@@ -1,6 +1,6 @@
 // ABOUTME: Unit tests for the LineItem domain type.
 // ABOUTME: Verifies line item creation and total calculation.
-package promotionengine
+package domain
 
 import (
 	"testing"

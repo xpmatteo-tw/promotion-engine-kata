@@ -1,6 +1,6 @@
 // ABOUTME: Unit tests for the Money value type.
 // ABOUTME: Verifies arithmetic operations, rounding, and comparisons.
-package promotionengine
+package domain
 
 import (
 	"testing"

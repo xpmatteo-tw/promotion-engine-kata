@@ -1,6 +1,6 @@
 // ABOUTME: Unit tests for the Product domain type.
 // ABOUTME: Verifies product creation and field assignment.
-package promotionengine
+package domain
 
 import (
 	"testing"

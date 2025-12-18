@@ -1,6 +1,6 @@
 // ABOUTME: Money value type representing monetary amounts in cents.
 // ABOUTME: Provides safe arithmetic operations and proper rounding behavior.
-package promotionengine
+package domain
 
 import (
 	"fmt"
