@@ -1,13 +1,10 @@
 # ABOUTME: Promotion abstractions and implementations
-# ABOUTME: Defines the Promotion protocol and concrete promotion types
+# ABOUTME: Defines the Promotion protocol for implementing custom promotions
 
 from abc import ABC, abstractmethod
-from dataclasses import dataclass
-from decimal import Decimal
 
 from promo_engine.domain import (
-    Cart, PricingContext, AppliedDiscount, PromotionId,
-    Sku, Percentage, Money
+    Cart, PricingContext, AppliedDiscount, PromotionId
 )
 
 
@@ -18,6 +15,7 @@ from promo_engine.domain import (
 # TODO: Add mutual exclusivity rules between promotions
 # TODO: Add maximum discount caps
 # TODO: Consider BuyXGetYPromotion for quantity-based discounts
+# TODO: Consider PercentOffProductPromotion
 # TODO: Consider FixedAmountOffPromotion
 # TODO: Consider ThresholdPromotion (spend $X, save $Y)
 
@@ -49,48 +47,3 @@ class Promotion(ABC):
         Returns list of AppliedDiscount instances with full explainability.
         """
         pass
-
-
-@dataclass
-class PercentOffProductPromotion(Promotion):
-    """Applies a percentage discount to specific SKUs."""
-
-    _id: PromotionId
-    eligible_skus: set[Sku]
-    percentage: Percentage
-
-    @property
-    def id(self) -> PromotionId:
-        return self._id
-
-    def is_applicable(self, cart: Cart, context: PricingContext) -> bool:
-        """Check if any cart lines contain eligible SKUs."""
-        return any(line.product.sku in self.eligible_skus for line in cart.lines)
-
-    def apply(self, cart: Cart, context: PricingContext) -> list[AppliedDiscount]:
-        """Apply percentage discount to each eligible line."""
-        allocations = {}
-
-        for line in cart.lines:
-            if line.product.sku in self.eligible_skus:
-                line_subtotal = line.subtotal()
-                discount_amount = line_subtotal * self.percentage.as_decimal()
-                allocations[line.product.sku] = discount_amount
-
-        if not allocations:
-            return []
-
-        total_discount = sum(allocations.values(), Money(Decimal('0')))
-
-        sku_list = ', '.join(str(sku) for sku in sorted(allocations.keys(), key=lambda s: s.value))
-        details = f"{self.percentage} off {sku_list}"
-
-        discount = AppliedDiscount(
-            promotion_id=self.id,
-            amount=total_discount,
-            target="line",
-            details=details,
-            allocations=allocations
-        )
-
-        return [discount]
