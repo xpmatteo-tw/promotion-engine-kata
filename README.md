@@ -37,7 +37,7 @@ for money. Then I need a number of additional steps, in the order that you were 
 This is the prompt you can use to get started.  After code generation, **make sure to review the result and ask for improvements**.
 
 ```
-Create a Python 3.11 project skeleton for a “Promotion Engine Kata” focused on TDD.
+Create a Python  project skeleton for a “Promotion Engine Kata” focused on TDD.
 
 Requirements:
 - Use only the standard library (unittest), no external deps.
