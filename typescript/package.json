@@ -1,0 +1,39 @@
+{
+  "name": "promotion-engine",
+  "version": "1.0.0",
+  "description": "TypeScript implementation of the Promotion Engine Kata",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "tsc --noEmit && vitest run",
+    "test:watch": "vitest watch",
+    "test:coverage": "tsc --noEmit && vitest run --coverage",
+    "clean": "rm -rf dist coverage"
+  },
+  "keywords": [
+    "promotion",
+    "pricing",
+    "kata",
+    "tdd",
+    "atdd"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "@vitest/coverage-v8": "^1.0.4",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "prettier": "^3.1.1",
+    "typescript": "^5.3.3",
+    "vitest": "^1.0.4"
+  },
+  "dependencies": {
+    "decimal.js": "^10.4.3"
+  }
+}
